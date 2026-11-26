@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Calculate gear ratio and gear inches for a fixed-gear bicycle.">
+  <meta name="theme-color" content="#e9e9e9">
+  <title>Fixie Calculator — DizzyWorkz</title>
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <script defer src="../../assets/js/fixie.js"></script>
+</head>
+<body class="fixie-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="listing-header">
+    <a class="home-icon" href="../../index.html" aria-label="Home">
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11.5 12 4l9 7.5M5.5 10v10h5v-5h3v5h5V10"/>
+      </svg>
+    </a>
+    <nav class="listing-nav" aria-label="Main navigation">
+      <a href="../../about/index.html">About</a>
+      <a href="../">Homemade</a>
+      <a href="../../projects/index.html">Projects</a>
+    </nav>
+  </header>
+  <main id="main" class="wrap">
+    <div class="fixie-gear-display">
+      <img class="fixie-logo" src="../../assets/images/fixie-rip-logo.png" width="1324" height="1188" alt="R.I.P. Surplace">
+      <div class="fixie-wheel" role="img" aria-label="Spoked bicycle wheel">
+        <svg class="fixie-skid-wheel" viewBox="0 0 100 100" aria-hidden="true">
+          <g id="fixie-skid-marks"></g>
+        </svg>
+        <svg class="fixie-cog" viewBox="0 0 100 100" aria-hidden="true">
+          <path id="rear-cog-shape" stroke="#222" stroke-width="1.5" stroke-linejoin="round"/>
+          <circle cx="50" cy="50" r="11" fill="#bdbdbd" stroke="#222" stroke-width="2"/>
+          <circle cx="50" cy="50" r="4" fill="#242424"/>
+        </svg>
+      </div>
+      <svg class="fixie-chainring" viewBox="0 0 100 100" role="img" aria-label="Front chainring">
+        <path id="front-chainring-shape" fill="#555" stroke="#222" stroke-width="1" stroke-linejoin="round"/>
+        <circle cx="50" cy="50" r="24" fill="none" stroke="#aaa" stroke-width="1.5" stroke-dasharray="2 6"/>
+        <circle cx="50" cy="50" r="9" fill="#dedede" stroke="#222" stroke-width="2"/>
+        <circle cx="50" cy="50" r="3" fill="#242424"/>
+      </svg>
+      <svg class="fixie-chain-overlay" aria-hidden="true">
+        <path id="fixie-chain-edge"/>
+        <path id="fixie-chain-plate"/>
+        <path id="fixie-chain-pins"/>
+      </svg>
+    </div>
+    <section class="fixie-panel" aria-labelledby="fixie-title">
+      <h1 id="fixie-title">Fixie Calculator</h1>
+      <form id="fixie-calculator" class="fixie-calculator">
+        <div class="fixie-results" role="status">
+          <div>Gear ratio <strong id="gear-ratio">2.82</strong></div>
+          <div>Gear inches <strong id="gear-inches">76.24</strong></div>
+          <div>Skid patches <strong id="skid-patches">17</strong></div>
+        </div>
+        <label>Chainring teeth
+          <select name="chainring">
+            <option value="42">42</option>
+            <option value="43">43</option>
+            <option value="44">44</option>
+            <option value="45">45</option>
+            <option value="46">46</option>
+            <option value="47">47</option>
+            <option value="48" selected>48</option>
+            <option value="49">49</option>
+            <option value="50">50</option>
+            <option value="51">51</option>
+            <option value="52">52</option>
+            <option value="53">53</option>
+            <option value="54">54</option>
+            <option value="55">55</option>
+            <option value="56">56</option>
+            <option value="57">57</option>
+            <option value="58">58</option>
+            <option value="59">59</option>
+            <option value="60">60</option>
+            <option value="61">61</option>
+            <option value="62">62</option>
+          </select>
+        </label>
+        <label>Rear cog teeth
+          <select name="cog">
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17" selected>17</option>
+            <option value="18">18</option>
+          </select>
+        </label>
+      </form>
+    </section>
+    <section class="fixie-reference" aria-labelledby="reference-title">
+      <h2 id="reference-title">Gear inches reference chart</h2>
+      <div class="fixie-chart-scroll" role="region" aria-label="Gear inches chart image" tabindex="0">
+        <img src="../../assets/images/fixie-gear-chart.png" width="838" height="812" alt="Gear inches chart for chainrings from 42 to 62 teeth and rear cogs from 12 to 18 teeth." loading="lazy">
+      </div>
+    </section>
+  </main>
+</body>
+</html>
