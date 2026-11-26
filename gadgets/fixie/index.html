@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Calculate gear ratio and gear inches for a fixed-gear bicycle.">
+  <meta name="theme-color" content="#e9e9e9">
+  <title>Fixie Calculator — DizzyWorkz</title>
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <script defer src="../../assets/js/fixie.js"></script>
+</head>
+<body class="fixie-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="listing-header">
+    <a class="home-icon" href="../../index.html" aria-label="Home">
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11.5 12 4l9 7.5M5.5 10v10h5v-5h3v5h5V10"/>
+      </svg>
+    </a>
+    <nav class="listing-nav" aria-label="Main navigation">
+      <a href="../../about/index.html">About</a>
+      <a href="../../homemade/">Homemade</a>
+      <a href="../../projects/index.html">Projects</a>
+    </nav>
+  </header>
+  <main id="main" class="wrap">
+    <div class="fixie-wheel" role="img" aria-label="Spoked bicycle wheel"></div>
+    <section class="fixie-panel" aria-labelledby="fixie-title">
+      <h1 id="fixie-title">Fixie Calculator</h1>
+      <form id="fixie-calculator" class="fixie-calculator">
+        <div class="fixie-results" role="status">
+          <div>Gear ratio <strong id="gear-ratio">2.82</strong></div>
+          <div>Gear inches <strong id="gear-inches">74.7</strong></div>
+        </div>
+        <label>Chainring teeth <input name="chainring" type="number" min="1" step="1" value="48" required></label>
+        <label>Rear cog teeth <input name="cog" type="number" min="1" step="1" value="17" required></label>
+        <button type="submit">Calculate</button>
+      </form>
+    </section>
+    <section class="fixie-reference" aria-labelledby="reference-title">
+      <h2 id="reference-title">Gear inches reference chart</h2>
+      <img src="../../assets/images/fixie-gear-chart.png" width="1330" height="1166" alt="Gear inches chart for chainrings from 42 to 70 teeth and rear cogs from 12 to 22 teeth." loading="lazy">
+    </section>
+  </main>
+</body>
+</html>
