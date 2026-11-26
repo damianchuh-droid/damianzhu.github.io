@@ -18,9 +18,12 @@
         <a href="projects/index.html">Projects</a>
       </nav>
       <h1 id="hero-title" aria-label="DizzyWorkz">DizzyWork<button class="wordmark-trigger" type="button" popovertarget="easter-egg" aria-label="z, reveal a surprise">z</button></h1>
-      <div id="easter-egg" class="easter-egg" popover>
-        <p>You found the z.</p>
-        <button type="button" popovertarget="easter-egg" popovertargetaction="hide">Close</button>
+      <div id="easter-egg" class="easter-egg" role="dialog" aria-labelledby="traveler-title" popover>
+        <header class="easter-egg-header">
+          <h2 id="traveler-title">Welcome, weary traveler</h2>
+          <button type="button" popovertarget="easter-egg" popovertargetaction="hide" aria-label="Close">×</button>
+        </header>
+        <img src="assets/images/weary-traveler.gif" width="600" height="337" alt="Pixel-art traveler resting by a campfire beneath a mountain sunset.">
       </div>
     </section>
   </main>

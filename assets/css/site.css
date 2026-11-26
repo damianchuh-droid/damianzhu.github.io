@@ -5,7 +5,6 @@
   font-style: italic;
   font-display: swap;
 }
-
 @font-face {
   font-family: "Carter One";
   src: url("../fonts/CarterOne-Regular.ttf") format("truetype");
@@ -21,12 +20,11 @@
   --panel: #272727;
   --accent: #e4e4e4;
   --mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
-  --display: "Arial Black", "Helvetica Neue", Arial, sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Helvetica Neue", Arial, sans-serif; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--mono); }
 a { color: inherit; }
 a:focus-visible { outline: 2px solid #5b5b5b; outline-offset: 4px; }
 h1, h2, h3, p, figure { margin: 0; }
@@ -94,13 +92,10 @@ nav { display: flex; flex-wrap: wrap; gap: .65rem clamp(.8rem, 3vw, 2.5rem); }
 .home-nav a:focus-visible { outline-color: var(--accent); }
 .home-hero h1 {
   color: white;
-  font: 400 clamp(1.65rem, 10.5vw, 10rem)/1.1 "Carter One", Georgia, serif;
-  font-family: "Valty DEMO", "Carter One", Georgia, serif;
-  font-weight: 700;
-  font-style: italic;
+  font: italic 700 clamp(1.65rem, 10.5vw, 10rem)/1.1 "Valty DEMO", "Carter One", Georgia, serif;
   font-synthesis: none;
   letter-spacing: -.035em;
-  text-shadow: 0 .025em .22em #0b0b0b, 0 .015em .035em #0b0b0b;
+  text-shadow: 0 .045em .25em #000, 0 .025em .065em #000, 0 0 .025em #000;
 }
 .wordmark-trigger {
   appearance: none;
@@ -115,30 +110,59 @@ nav { display: flex; flex-wrap: wrap; gap: .65rem clamp(.8rem, 3vw, 2.5rem); }
 }
 .wordmark-trigger:focus-visible { outline-color: white; }
 .easter-egg {
-  max-width: calc(100% - 2rem);
-  padding: 1.25rem 1.5rem;
-  border: 1px solid var(--line);
-  background: var(--paper);
-  color: var(--ink);
-  font: 700 1.25rem Georgia, serif;
-  text-align: center;
+  width: min(37.5rem, calc(100% - 2rem));
+  max-height: calc(100% - 2rem);
+  padding: 0;
+  border: 1px solid #767676;
+  background: #1e1e1e;
+  color: #fafafa;
+  box-shadow: 0 1rem 3rem #0009;
 }
-.easter-egg::backdrop { background: #0006; }
-.easter-egg button {
-  margin-top: .75rem;
-  padding: .4rem .75rem;
+.easter-egg::backdrop { background: #0008; }
+.easter-egg-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  padding-left: .9rem;
+  border-bottom: 1px solid #767676;
+}
+.easter-egg-header h2 { font: 700 clamp(1rem, 3vw, 1.25rem) var(--mono); }
+.easter-egg-header button {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border: 0;
+  border-left: 1px solid #767676;
   background: transparent;
   color: inherit;
-  border: 1px solid var(--line);
+  font: 1.5rem/1 var(--mono);
   cursor: pointer;
 }
+.easter-egg-header button:hover { background: #3a3a3a; }
+.easter-egg-header button:focus-visible { outline-offset: -4px; outline-color: white; }
+.easter-egg img { display: block; width: 100%; height: auto; }
 .eyebrow { text-transform: uppercase; color: var(--muted); }
 .diagram { position: relative; overflow: hidden; background-color: var(--panel); background-image: linear-gradient(#e7e7e712 1px, transparent 1px), linear-gradient(90deg, #e7e7e712 1px, transparent 1px); background-size: 24px 24px; color: #dedede; }
 .diagram canvas { width: 100%; height: 100%; display: block; position: absolute; inset: 0; }
 .diagram figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .35rem 1rem; position: absolute; inset: auto 1rem .9rem; border-top: 1px solid #dedede66; padding-top: .55rem; }
 .about-details { display: grid; grid-template-columns: 1.5fr 1fr; column-gap: clamp(1.5rem, 5vw, 5rem); }
+.about-photo {
+  display: block;
+  --photo-inset: clamp(1rem, 4vw, 3rem);
+  width: min(calc(100% - var(--photo-inset)), 16rem);
+  height: auto;
+  margin-block: 1rem;
+  margin-inline-end: var(--photo-inset);
+  justify-self: end;
+}
+.about-details .contact { grid-column: 1 / -1; }
 .section { padding-block: clamp(2rem, 4vw, 4.5rem); border-top: 1px solid var(--line); scroll-margin-top: 1rem; }
-.section h1, .section h2, .project-intro h1 { font: 800 clamp(2.2rem, 5vw, 5.25rem)/.98 var(--display); letter-spacing: -.065em; }
+.section h1, .project-intro h1, .about-details .contact h2 {
+  font: 800 clamp(1.5rem, 3vw, 2.65rem)/1.1 var(--mono);
+  letter-spacing: -.055em;
+}
+.section h2 { font: 800 clamp(2.2rem, 5vw, 5.25rem)/.98 var(--mono); letter-spacing: -.065em; }
 .section-heading { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .75rem; margin-bottom: 1.4rem; }
 .section-heading p { color: var(--muted); text-transform: uppercase; }
 .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
@@ -151,6 +175,7 @@ nav { display: flex; flex-wrap: wrap; gap: .65rem clamp(.8rem, 3vw, 2.5rem); }
 .project-card a:hover h3 { text-decoration: underline; text-underline-offset: .15em; }
 .project-card p, #about p, .contact p, .project-intro p, .stage p { color: var(--muted); }
 #about p, .contact p { margin-top: 1rem; max-width: 55ch; }
+#about .about-aside { margin-top: 2.75rem; }
 .site-footer { border-top: 1px solid var(--line); color: var(--muted); }
 .project-intro { padding-block: clamp(2rem, 5vw, 5rem) 1.4rem; }
 .project-intro h1 { margin-block: .75rem; }
@@ -168,6 +193,7 @@ nav { display: flex; flex-wrap: wrap; gap: .65rem clamp(.8rem, 3vw, 2.5rem); }
   .site-header { align-items: flex-start; flex-direction: column; justify-content: center; padding-block: .85rem; }
   nav a { padding-block: .3rem; }
   .about-details, .project-grid, .stage { grid-template-columns: 1fr; }
+  .about-photo { --photo-inset: 0px; justify-self: start; margin-bottom: 2rem; }
   .project-grid { gap: 1.75rem; }
   .project-card .diagram { aspect-ratio: 1.5; }
 }
@@ -182,10 +208,9 @@ nav { display: flex; flex-wrap: wrap; gap: .65rem clamp(.8rem, 3vw, 2.5rem); }
   background-image:
     radial-gradient(ellipse at 85% 0%, #92929226, transparent 55%),
     repeating-linear-gradient(113deg, #56565607 0 1px, transparent 1px 5px);
-  font-family: Georgia, "Times New Roman", serif;
 }
 .sketch-page .brand {
-  font: 400 1.3rem/1.2 "Carter One", Georgia, serif;
+  font: 400 1.3rem/1.2 var(--mono);
   letter-spacing: -.035em;
 }
 .sketch-page .brand-mark {
@@ -195,11 +220,8 @@ nav { display: flex; flex-wrap: wrap; gap: .65rem clamp(.8rem, 3vw, 2.5rem); }
 .sketch-page .section h1,
 .sketch-page .section h2,
 .sketch-page .project-intro h1 {
-  font-family: Georgia, "Times New Roman", serif;
-  font-style: italic;
   letter-spacing: -.055em;
 }
-.sketch-page .card-copy h3 { font-style: italic; }
 .sketch-page .project-intro p,
 .sketch-page .stage p,
 .sketch-page .project-card p { font-size: 1.08rem; }
@@ -227,7 +249,7 @@ nav { display: flex; flex-wrap: wrap; gap: .65rem clamp(.8rem, 3vw, 2.5rem); }
   display: grid;
   justify-items: center;
   padding: .35rem .5rem .65rem;
-  font: italic 700 .75rem Georgia, serif;
+  font: 700 .75rem var(--mono);
   text-align: center;
   text-decoration: none;
 }
@@ -249,7 +271,6 @@ nav { display: flex; flex-wrap: wrap; gap: .65rem clamp(.8rem, 3vw, 2.5rem); }
   background-color: #e8e8e8;
   background-image: radial-gradient(#bdbdbd 1px, transparent 1px);
   background-size: 5px 5px;
-  font-family: Verdana, Arial, sans-serif;
 }
 .fixie-wheel {
   position: relative;
@@ -282,7 +303,7 @@ nav { display: flex; flex-wrap: wrap; gap: .65rem clamp(.8rem, 3vw, 2.5rem); }
   padding: .45rem .65rem;
   background: linear-gradient(#555, #262626);
   color: white;
-  font-size: .875rem;
+  font-size: .8rem;
 }
 .fixie-calculator {
   display: grid;
