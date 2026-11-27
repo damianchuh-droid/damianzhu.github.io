@@ -245,33 +245,6 @@ nav { display: flex; flex-wrap: wrap; gap: .65rem clamp(.8rem, 3vw, 2.5rem); }
 }
 .sketch-page .diagram figcaption { border-color: var(--line); }
 
-.gadget-grid {
-  display: grid;
-  margin-top: clamp(1.5rem, 4vw, 3rem);
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(.75rem, 3vw, 2rem);
-}
-.gadget-link {
-  display: grid;
-  justify-items: center;
-  padding: .35rem .5rem .65rem;
-  font: 700 .75rem var(--mono);
-  text-align: center;
-  text-decoration: none;
-}
-.gadget-link img {
-  display: block;
-  width: min(100%, 14rem);
-  aspect-ratio: 1121 / 1403;
-  height: auto;
-  object-fit: contain;
-  mix-blend-mode: multiply;
-}
-.gadget-link:hover span { text-decoration: underline; text-underline-offset: .15em; }
-@media (max-width: 560px) {
-  .gadget-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
 .fixie-page {
   min-height: 100vh;
   background-color: #e8e8e8;
@@ -402,19 +375,23 @@ nav { display: flex; flex-wrap: wrap; gap: .65rem clamp(.8rem, 3vw, 2.5rem); }
 .fixie-chart-scroll { overflow-x: auto; }
 .fixie-reference img { display: block; width: 35rem; max-width: none; height: auto; }
 
-.project-grid.project-list-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.project-grid.project-list-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 680px) {
+  .project-grid.project-list-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 .project-list-link {
   padding: 1rem 0;
   border-top: 1px solid var(--line);
 }
-.project-list-link .card-copy { margin-top: 0; align-items: baseline; }
-.sketch-page .project-list-link h2 { font-size: clamp(1.5rem, 3vw, 2.6rem); }
+.project-list-link .card-copy { margin-top: 0; justify-content: center; text-align: center; }
+.project-list-grid .project-card { container-type: inline-size; }
+.sketch-page .project-list-link h2 { font-size: clamp(.75rem, 7cqi, 1.125rem); }
 .project-list-link:hover h2 { text-decoration: underline; text-underline-offset: .15em; }
 
 .project-list-image {
   display: grid;
   place-items: center;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 1500 / 824;
   margin-bottom: .75rem;
   background-image:
     linear-gradient(#8882 1px, transparent 1px),
@@ -423,11 +400,15 @@ nav { display: flex; flex-wrap: wrap; gap: .65rem clamp(.8rem, 3vw, 2.5rem); }
 }
 .project-list-image img {
   display: block;
-  width: 90%;
-  height: 90%;
+  width: 82%;
+  height: 82%;
   min-height: 0;
   object-fit: contain;
 }
+.project-list-image--photo,
+.project-list-image--illustration { background-image: none; }
+.project-list-image--photo img { width: 100%; height: 100%; }
+.project-list-image--illustration img { mix-blend-mode: multiply; }
 
 .resole-story { display: grid; gap: clamp(2.5rem, 7vw, 6rem); }
 .resole-step {
@@ -491,3 +472,58 @@ nav { display: flex; flex-wrap: wrap; gap: .65rem clamp(.8rem, 3vw, 2.5rem); }
   .resole-story .resole-step { grid-template-columns: 1fr; }
   .resole-step:nth-child(even) .resole-photo { grid-area: auto; }
 }
+
+.bikefit { padding-bottom: 3rem; }
+.bikefit-controls { display: flex; align-items: end; flex-wrap: wrap; gap: .65rem; }
+.bikefit-controls label { display: grid; gap: .35rem; min-width: 0; font-size: .8rem; }
+.bikefit-controls input { max-width: 100%; font: inherit; }
+.bikefit-controls select, .bikefit-controls button, .bikefit-controls input::file-selector-button {
+  padding: .5rem .65rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+.bikefit-controls button { font-size: .8rem; cursor: pointer; }
+.bikefit-controls button:disabled { opacity: .48; cursor: default; }
+.bikefit-status { margin: .8rem 0; color: var(--muted); font-size: .82rem; }
+.bikefit-layout { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); align-items: start; gap: 1rem; }
+.bikefit-stage { position: relative; background: #222; color: #eee; }
+.bikefit-stage p { display: grid; place-items: center; aspect-ratio: 16 / 9; padding: .8rem; text-align: center; }
+.bikefit-stage video { display: block; width: 100%; height: auto; }
+.bikefit-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.bikefit-stage [hidden] { display: none; }
+.bikefit-measurements { min-width: 0; padding: 1rem; border: 1px solid var(--line); }
+.bikefit-measurements h2 { margin-bottom: .7rem; font-size: 1rem; }
+.bikefit-measurements p { margin: .75rem 0; color: var(--muted); font-size: .75rem; }
+.bikefit-measurements p:last-child { margin-bottom: 0; }
+.bikefit-table { overflow-x: auto; }
+.bikefit-table table { width: 100%; border-collapse: collapse; font-size: .75rem; font-variant-numeric: tabular-nums; }
+.bikefit-table th, .bikefit-table td { padding: .45rem .35rem; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+.bikefit-table th:first-child { text-align: left; }
+@media (max-width: 920px) {
+  .bikefit-layout { grid-template-columns: 1fr; }
+}
+
+.bikefit-player { min-width: 0; }
+.bikefit-timeline {
+  padding: .7rem .8rem;
+  border: 1px solid var(--line);
+  font-size: .8rem;
+}
+.bikefit-scrubber { display: grid; gap: .35rem; margin-bottom: .6rem; }
+.bikefit-scrubber input { width: 100%; margin: 0; accent-color: var(--ink); }
+#ride-time { align-self: center; font-variant-numeric: tabular-nums; }
+
+.bikefit-stage.calibrating { cursor: crosshair; }
+
+.bikefit-crank-chart { margin-top: 1.35rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+.bikefit-crank-chart h3 { margin-bottom: .55rem; font-size: .9rem; }
+.bikefit-crank-chart canvas { display: block; width: 100%; height: auto; }
+.bikefit-chart-key { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem 1rem; margin: .35rem 0 .65rem; padding: 0; list-style: none; font-size: .75rem; }
+.bikefit-chart-key li::before { content: ""; display: inline-block; width: .55rem; height: .55rem; margin-right: .35rem; border-radius: 50%; background: var(--series-color); }
+.chart-knee { --series-color: #ac4b18; }
+.chart-hip { --series-color: #87700e; }
+.chart-ankle { --series-color: #7050a2; }
+.bikefit-crank-chart figcaption { color: var(--muted); }

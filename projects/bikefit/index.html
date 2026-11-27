@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Measure side-view cycling joint angles from a local video file.">
+  <meta name="theme-color" content="#e9e9e9">
+  <title>Virtual BikeFit Lab — DizzyWorkz</title>
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+  <script type="module" src="../../assets/js/bikefit/lab.mjs"></script>
+</head>
+<body class="sketch-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="listing-header">
+    <a class="home-icon" href="../../index.html" aria-label="Home">
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11.5 12 4l9 7.5M5.5 10v10h5v-5h3v5h5V10"/>
+      </svg>
+    </a>
+    <nav class="listing-nav" aria-label="Main navigation">
+      <a href="../../about/index.html">About</a>
+      <a href="../../homemade/">Homemade</a>
+      <a href="../index.html">Projects</a>
+    </nav>
+  </header>
+  <main id="main" class="wrap bikefit">
+    <header class="project-intro">
+      <h1>Virtual BikeFit Lab</h1>
+      <p>Open a stationary side-view clip with the rider and pedals in frame. Choose the side facing the camera.</p>
+    </header>
+    <div class="bikefit-controls">
+      <button id="calibrate-bike" type="button" disabled>Calibrate bike</button>
+      <button id="record-angles" type="button" disabled>Start recording</button>
+      <button id="stop-recording" type="button" disabled>Stop recording</button>
+      <label>Open video <input id="ride-file" type="file" accept="video/*"></label>
+      <label>Rider side
+        <select id="rider-side">
+          <option value="left">Left</option>
+          <option value="right">Right</option>
+        </select>
+      </label>
+    </div>
+    <p id="bikefit-status" class="bikefit-status" role="status" hidden></p>
+    <div class="bikefit-layout">
+      <div class="bikefit-player">
+        <p id="wheel-status" class="bikefit-status" role="status" hidden></p>
+        <div id="bikefit-stage" class="bikefit-stage">
+          <p id="bikefit-empty">Video preview</p>
+          <video id="ride-video" aria-label="Cycling video preview" preload="auto" playsinline muted hidden></video>
+          <canvas id="pose-overlay" aria-hidden="true" hidden></canvas>
+        </div>
+        <div id="ride-timeline" class="bikefit-timeline" hidden>
+          <label class="bikefit-scrubber">
+            <input aria-label="Video position" id="ride-position" type="range" min="0" max="0" step="any" value="0">
+          </label>
+          <div class="bikefit-controls">
+            <button id="ride-play" type="button">Play</button>
+            <button id="ride-back" type="button">Previous frame</button>
+            <button id="ride-next" type="button">Next frame</button>
+            <span id="ride-time">0:00.00</span>
+          </div>
+        </div>
+      </div>
+      <section class="bikefit-measurements" aria-labelledby="measurement-title">
+        <h2 id="measurement-title">Joint angles</h2>
+        <div class="bikefit-table">
+          <table>
+            <thead><tr><th scope="col">Joint</th><th scope="col">Live</th><th scope="col">Min</th><th scope="col">Max</th></tr></thead>
+            <tbody id="angle-rows"></tbody>
+          </table>
+        </div>
+        <p>Angles are measured in the image plane. A tilde (~) marks angles based on a brief foot prediction. After bike calibration, angles that use the knee include an experimental pin correction when the required landmarks are visible. Recorded statistics and CSV exclude predicted points.</p>
+        <div class="bikefit-controls">
+          <button id="export-angles" type="button" disabled>Export CSV</button>
+        </div>
+        <p id="recording-summary" aria-live="polite">No recording yet.</p>
+        <figure class="bikefit-crank-chart" aria-labelledby="crank-chart-title">
+          <h3 id="crank-chart-title">Joint angle vs. crank rotation</h3>
+          <canvas id="crank-chart" width="720" height="410" role="img" aria-label="Live and averaged knee, hip, and ankle angles by crank rotation"></canvas>
+          <ul class="bikefit-chart-key">
+            <li class="chart-knee">Knee</li><li class="chart-hip">Hip</li><li class="chart-ankle">Ankle</li>
+          </ul>
+          <figcaption>Dashed traces and large dots show live angles. Lighter curves fit the measured samples and update with completed-turn averages.<br><span id="crank-chart-note">0° is the top of the toe’s path.</span></figcaption>
+        </figure>
+        <noscript><p>JavaScript is required to run pose estimation.</p></noscript>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
